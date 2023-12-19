@@ -6,21 +6,21 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
   templateUrl: './shopping-edit.component.html',
   styleUrls: ['./shopping-edit.component.css']
 })
-export class ShoppingEditComponent implements OnInit {
+export class ShoppingEditComponent{
 
-  @ViewChild('nameInput') nameInputRef: ElementRef | undefined;
-  @ViewChild('amountInput') amountInputRef: ElementRef | undefined;
+  @ViewChild('nameInput') nameInputRef: ElementRef | null=null;
+  @ViewChild('amountInput') amountInputRef: ElementRef | null = null;
   @Output() ingredientAdded = new EventEmitter<Ingredient>();
+
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
   onAdd(){
+    
     const ingName = this.nameInputRef?.nativeElement.value;
     const ingAmount = this.amountInputRef?.nativeElement.value;
     const newIngredient = new Ingredient(ingName, ingAmount);
     this.ingredientAdded.emit(newIngredient);
+ 
   }
 }
