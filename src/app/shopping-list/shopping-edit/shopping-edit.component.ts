@@ -20,7 +20,13 @@ export class ShoppingEditComponent{
     const ingAmount = this.amountInputRef?.nativeElement.value;
     if(ingName !== '' && ingAmount !== ''){
       const newIngredient = new Ingredient(ingName, ingAmount);
-      this.slService.addIngredient(newIngredient);
+      if(newIngredient.name === ingName){
+        newIngredient.amount+=ingAmount;
+      }
+      
+        this.slService.addIngredient(newIngredient);
+      
+      
     }else{
       alert("Please enter the data");
     }
